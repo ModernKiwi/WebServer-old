@@ -1,22 +1,15 @@
-// Module imports
 import dotenv from 'dotenv';
-import express from 'express';
-
-// Set Variables
 dotenv.config();
-const PORT = process.env.PORT || 5000;
 
-// Internal imports
+import express from 'express';
 import connectDB from './database/mongodb.js';
 
-// Setup Variables
+const PORT = process.env.PORT || 5000;
+
 const app = express();
+app.use(express.json());
 
-// Test connection to database.
 connectDB();
-
-// Init Middleware
-app.use(express.json({ extended: false }));
 
 app.get('/', (req, res) => res.json({ msg: 'Hello World' }));
 
