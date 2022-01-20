@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { verify } from 'jsonwebtoken';
+import jswt from 'jsonwebtoken';
 
 dotenv.config('../.env');
 
@@ -17,7 +17,7 @@ export default function (req, res, next) {
 
   //Verify token
   try {
-    const decoded = verify(token, jwtSecret);
+    const decoded = jswt.verify(token, jwtSecret);
 
     req.user = decoded.user;
     next();
